@@ -61,13 +61,14 @@ drag_margin/bottom = 0.0
 
 [node name="EnergyMeter" type="ProgressBar" parent="."]
 
+rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 144.0
+margin/left = 199.0
 margin/top = -148.0
-margin/right = 254.0
+margin/right = 309.0
 margin/bottom = -132.0
 range/min = 0.0
 range/max = 100.0
