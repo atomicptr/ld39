@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
+[ext_resource path="res://entities/player/tankbottom.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/tanktop.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8.16122, 7.95641 )
+
+[node name="Player" type="KinematicBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+
+[node name="BottomSprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="TopSprite" type="Sprite" parent="."]
+
+texture = ExtResource( 3 )
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+
