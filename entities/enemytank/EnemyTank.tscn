@@ -31,10 +31,24 @@ texture = ExtResource( 2 )
 texture = ExtResource( 3 )
 flip_v = true
 
+[node name="Cannon" type="Node2D" parent="TopSprite"]
+
+transform/pos = Vector2( 0, 8 )
+transform/scale = Vector2( 0.1, 0.1 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="ReloadTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.75
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
 
 

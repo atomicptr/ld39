@@ -95,5 +95,9 @@ func reduce_energy(amount):
 func increase_energy(amount):
     energy = min(energy + amount, ENERGY_MAX)
 
+func on_hit(by):
+    if not reduce_energy(10):
+        print("technically you should be dead now :P")
+
 func _on_EnergyTimer_timeout():
     increase_energy(1)
