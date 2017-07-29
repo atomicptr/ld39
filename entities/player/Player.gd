@@ -31,8 +31,6 @@ func _ready():
     set_process(true)
 
 func _process(delta):
-    update_TopSprite(delta)
-
     if Input.is_action_pressed("forward"):
         velocity += (direction * ACCELERATION * (1 + energy/200))
 
@@ -48,6 +46,10 @@ func _process(delta):
     if Input.is_action_pressed("fire"):
         fire_bullet()
 
+    # top looks at mouse
+    TopSprite.look_at(get_global_mouse_pos())
+
+    # bottom looks into direction
     BottomSprite.look_at(get_pos() + direction)
 
     move(velocity * delta)
@@ -57,9 +59,6 @@ func _process(delta):
 
     # update energy meter ui
     EnergyMeter.set_val(energy)
-
-func update_TopSprite(delta):
-    TopSprite.look_at(get_global_mouse_pos())
 
 func turn(rad):
     var sinus = sin(rad)
@@ -74,6 +73,7 @@ func turn(rad):
 func fire_bullet():
     if time - last_bullet_shot >= (BULLET_DELAY * (1 - energy/200)) and reduce_energy(ENERGY_BULLET_COST):
         var bullet = BulletScene.instance()
+        bullet.set_owner(self)
 
         var cannon_pos = CannonPosition.get_global_pos()
 

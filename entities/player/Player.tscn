@@ -9,7 +9,9 @@
 custom_solver_bias = 0.0
 extents = Vector2( 8.16122, 7.95641 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"hittable",
+]]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
