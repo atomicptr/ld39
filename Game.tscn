@@ -33,14 +33,14 @@ samples/bullet = {
 "sample": ExtResource( 3 )
 }
 samples/explosion = {
-"db": 0.0,
-"pitch": 1.0,
+"db": -5.0,
+"pitch": 1.3,
 "priority": 0,
 "sample": ExtResource( 4 )
 }
 samples/explosion_big = {
 "db": 0.0,
-"pitch": 1.0,
+"pitch": 1.2,
 "priority": 0,
 "sample": ExtResource( 5 )
 }
@@ -235,8 +235,6 @@ script/script = ExtResource( 6 )
 
 [node name="Spawners" type="Node2D" parent="Container"]
 
-editor/display_folded = true
-
 [node name="Top" type="Node2D" parent="Container/Spawners"]
 
 transform/pos = Vector2( 256, -50 )
@@ -260,7 +258,7 @@ transform/scale = Vector2( 0.1, 0.1 )
 [node name="SpawnTimer" type="Timer" parent="Container/Spawners"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 1.5
 one_shot = false
 autostart = true
 

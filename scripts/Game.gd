@@ -45,6 +45,18 @@ onready var waves = [
             {"type": EnemyTank, "location": SpawnPointTop, "number": 1}
         ],
         "reward": 8
+    },
+    {
+        "enemies": [
+            {"type": EnemyTank, "location": SpawnPointTop, "number": 2},
+            {"type": EnemyTank, "location": SpawnPointLeft, "number": 2},
+            {"type": EnemyTank, "location": SpawnPointRight, "number": 2},
+            {"type": EnemyTank, "location": SpawnPointBottom, "number": 3},
+            {"type": EnemyTank, "location": SpawnPointRight, "number": 2},
+            {"type": EnemyTank, "location": SpawnPointLeft, "number": 2},
+            {"type": EnemyTank, "location": SpawnPointTop, "number": 2}
+        ],
+        "reward": 12
     }
 ]
 
