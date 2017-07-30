@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://components/tankbottom/TankBottom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://components/tankcannon/TankCannon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/player/energy.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -89,6 +90,11 @@ range/value = 1.0
 range/exp_edit = false
 range/rounded = false
 percent/visible = true
+
+[node name="Sprite" type="Sprite" parent="EnergyMeter"]
+
+transform/pos = Vector2( -6, 4 )
+texture = ExtResource( 4 )
 
 [node name="EnergyTimer" type="Timer" parent="."]
 

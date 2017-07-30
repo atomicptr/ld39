@@ -12,6 +12,9 @@ var owner = null
 func set_owner(owner):
     self.owner = owner
 
+func direction():
+    return (get_global_pos() - CannonPosition.get_global_pos()).normalized()
+
 func fire_bullet():
     var bullet = BulletScene.instance()
     bullet.set_owner(owner)
