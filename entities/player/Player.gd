@@ -78,7 +78,7 @@ func reward(energy, money):
 
 func on_hit(by):
     if not reduce_energy(10):
-        print("technically you should be dead now :P")
+        Game.end_game()
 
 func _on_EnergyTimer_timeout():
     increase_energy(10)

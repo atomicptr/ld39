@@ -38,11 +38,17 @@ func _process(delta):
     velocity *= 0.9
 
 func on_hit(by):
-    BulletContainer.purge_owner(self)
-
     if by != null and not by.is_in_group("enemy"):
         Player.reward(10, 1)
-        queue_free()
+        destroy()
 
 func _on_ReloadTimer_timeout():
-    TankCannon.fire_bullet()
+    if (get_pos() - Player.get_pos()).length() <= 200:
+        TankCannon.fire_bullet()
+
+
+func destroy():
+    Game.explode(get_global_pos(), false)
+    Game.sfx("explosion_big")
+    BulletContainer.purge_owner(self)
+    queue_free()

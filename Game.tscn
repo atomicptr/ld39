@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://map/tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://scripts/BulletContainer.gd" type="Script" id=3]
-[ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/bullet/bullet.wav" type="Sample" id=3]
+[ext_resource path="res://entities/explosion/explosion.wav" type="Sample" id=4]
+[ext_resource path="res://entities/explosion/explosion_big.wav" type="Sample" id=5]
+[ext_resource path="res://scripts/BulletContainer.gd" type="Script" id=6]
+[ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -20,6 +23,27 @@ extents = Vector2( 263.724, 1.84481 )
 vertices = Vector2Array( 139, 201, 290, 200, 304, 200, 138, 224, 250, 200, 455, 210, 491, 276, 458, 276, 393, 273, 417, 231, 290, 100, 250, 100, 169, 91, 253, 87, 282, 89, 306, 97, 392, 73, 459, 77, 484, 82, 371, 99, 311, 97, 369, 75, 235, 296, 364, 294, 390, 298, -102, 406, 205, 297, 602, -106, 610, 404, 486, 176, 489, 154, 506, 30, 30, 71, 31, 50, 100, 38, 130, 46, 120, 75, 98, 75, 458, 187, 462, 176, 428, 211, 230, 180, 230, 120, 251, 120, 346, 178, 304, 179, 250, 180, 417, 209, 428, 186, 488, 299, 452, 302, 393, 232, 368, 271, 260, 33, 258, 11, 369, 3, 281, 64, 147, 89, 147, 111, 120, 95, 307, 120, 290, 119, 463, 154, 370, 197, 391, 208, 59, 259, 67, 237, 390, 21, 429, 21, 429, 51, 229, 10, 234, 32, 191, 20, -100, -106, 190, 41, 80, 170, 60, 170, 60, 130, 80, 130, 190, 180, 190, 120, 290, 180, 446, 50, 466, 58, 234, 273, 35, 267, 205, 275, 31, 287, 6, 291, 9, 266, 132, 19, 169, 19, 170, 40, 343, 120, 254, 63, 111, 200, 80, 190, 170, 200, 101, 18, 10, 49, 39, 251, 41, 231, 30, 190, 490, 25, 446, 3, 111, 224, 97, 96, 80, 100, 30, 100, 10, 70, 230, 100, 170, 100, 168, 111, 230, 200 )
 polygons = [ IntArray( 0, 1, 2, 3 ), IntArray( 4, 1, 0 ), IntArray( 5, 6, 7, 8, 9 ), IntArray( 10, 11, 12, 13, 14, 15 ), IntArray( 16, 17, 18, 19, 20, 14, 21 ), IntArray( 22, 23, 24, 25, 26 ), IntArray( 14, 20, 15 ), IntArray( 27, 28, 6, 29, 30, 31 ), IntArray( 32, 33, 34, 35, 36, 37 ), IntArray( 38, 39, 29, 6, 5 ), IntArray( 18, 31, 30 ), IntArray( 40, 5, 9 ), IntArray( 41, 42, 43, 44, 45, 46 ), IntArray( 40, 9, 47, 48 ), IntArray( 49, 6, 28 ), IntArray( 49, 28, 25, 50 ), IntArray( 51, 9, 8, 52 ), IntArray( 53, 54, 55, 21, 56 ), IntArray( 57, 58, 59, 36, 35 ), IntArray( 8, 7, 50, 24 ), IntArray( 24, 50, 25 ), IntArray( 15, 60, 61, 10 ), IntArray( 19, 18, 30, 62 ), IntArray( 63, 19, 62, 39, 48 ), IntArray( 2, 63, 64, 51, 52, 65, 66, 3 ), IntArray( 16, 67, 68, 69 ), IntArray( 70, 71, 72, 73 ), IntArray( 74, 72, 71 ), IntArray( 75, 76, 77, 78 ), IntArray( 41, 79, 80, 42 ), IntArray( 45, 2, 1, 81 ), IntArray( 69, 82, 83, 17, 16 ), IntArray( 23, 22, 84, 52 ), IntArray( 52, 84, 85, 65 ), IntArray( 85, 84, 86 ), IntArray( 85, 86, 26, 87 ), IntArray( 87, 26, 25, 88 ), IntArray( 88, 25, 73, 89 ), IntArray( 35, 90, 91, 92, 12, 57 ), IntArray( 60, 93, 44 ), IntArray( 71, 94, 13, 12, 74 ), IntArray( 95, 96, 75, 97, 0 ), IntArray( 73, 98, 34, 33, 99 ), IntArray( 100, 65, 85, 89 ), IntArray( 101, 100, 89, 73, 102 ), IntArray( 103, 83, 82, 104 ), IntArray( 27, 31, 103, 104 ), IntArray( 73, 27, 104, 55 ), IntArray( 73, 55, 54, 70 ), IntArray( 73, 72, 91 ), IntArray( 73, 91, 90, 98 ), IntArray( 39, 38, 48 ), IntArray( 63, 48, 47, 64 ), IntArray( 105, 3, 66 ), IntArray( 96, 95, 105, 66, 101, 102 ), IntArray( 97, 75, 78 ), IntArray( 21, 14, 56 ), IntArray( 53, 56, 94, 71 ), IntArray( 92, 74, 12 ), IntArray( 32, 37, 106, 107, 108, 109 ), IntArray( 61, 60, 44, 43 ), IntArray( 59, 58, 97, 78, 107, 106 ), IntArray( 11, 43, 42, 110 ), IntArray( 12, 11, 110 ), IntArray( 12, 110, 111 ), IntArray( 112, 12, 111, 97 ), IntArray( 58, 112, 97 ), IntArray( 73, 99, 109 ), IntArray( 109, 108, 102 ), IntArray( 73, 109, 102 ), IntArray( 45, 81, 46 ), IntArray( 113, 41, 46, 4 ), IntArray( 113, 4, 0 ), IntArray( 0, 97, 113 ) ]
 outlines = [ Vector2Array( -100, -106, 602, -106, 610, 404, -102, 406 ), Vector2Array( 30, 100, 80, 100, 80, 130, 60, 130, 60, 170, 80, 170, 80, 190, 30, 190 ), Vector2Array( 250, 180, 290, 180, 290, 200, 250, 200 ), Vector2Array( 230, 180, 230, 200, 170, 200, 170, 100, 230, 100, 230, 120, 190, 120, 190, 180 ), Vector2Array( 250, 100, 290, 100, 290, 119, 251, 120 ), Vector2Array( 311, 97, 371, 99, 370, 197, 304, 200, 304, 179, 346, 178, 343, 120, 307, 120, 306, 97 ), Vector2Array( 369, 75, 392, 73, 390, 21, 429, 21, 429, 51, 446, 50, 446, 3, 369, 3 ), Vector2Array( 10, 49, 31, 50, 30, 71, 10, 70 ), Vector2Array( 98, 75, 120, 75, 120, 95, 97, 96 ), Vector2Array( 147, 89, 169, 91, 168, 111, 147, 111 ), Vector2Array( 101, 18, 132, 19, 130, 46, 100, 38 ), Vector2Array( 169, 19, 191, 20, 190, 41, 170, 40 ), Vector2Array( 229, 10, 258, 11, 260, 33, 234, 32 ), Vector2Array( 254, 63, 281, 64, 282, 89, 253, 87 ), Vector2Array( 466, 58, 490, 25, 506, 30, 484, 82, 459, 77 ), Vector2Array( 463, 154, 489, 154, 486, 176, 462, 176 ), Vector2Array( 428, 186, 458, 187, 455, 210, 428, 211 ), Vector2Array( 391, 208, 417, 209, 417, 231, 393, 232 ), Vector2Array( 368, 271, 393, 273, 390, 298, 364, 294 ), Vector2Array( 458, 276, 491, 276, 488, 299, 452, 302 ), Vector2Array( 205, 275, 234, 273, 235, 296, 205, 297 ), Vector2Array( 111, 200, 139, 201, 138, 224, 111, 224 ), Vector2Array( 41, 231, 67, 237, 59, 259, 39, 251 ), Vector2Array( 9, 266, 35, 267, 31, 287, 6, 291 ) ]
+
+[sub_resource type="SampleLibrary" id=4]
+
+samples/bullet = {
+"db": -5.0,
+"pitch": 1.7,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
+samples/explosion = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 4 )
+}
+samples/explosion_big = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
 
 [node name="Game" type="Node2D"]
 
@@ -194,11 +218,24 @@ drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 
+[node name="Sound" type="SamplePlayer2D" parent="Container"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
+
 [node name="Bullets" type="Node2D" parent="Container"]
 
-script/script = ExtResource( 3 )
+script/script = ExtResource( 6 )
 
 [node name="Spawners" type="Node2D" parent="Container"]
+
+editor/display_folded = true
 
 [node name="Top" type="Node2D" parent="Container/Spawners"]
 
@@ -236,7 +273,9 @@ autostart = false
 
 [node name="Enemies" type="Node2D" parent="Container"]
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="Explosions" type="Node2D" parent="Container"]
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 205, 131 )
 
@@ -285,8 +324,55 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="GameOverPanel" type="Panel" parent="UI"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 170.0
+margin/top = 100.0
+margin/right = 360.0
+margin/bottom = 200.0
+
+[node name="GameOverLabel" type="Label" parent="UI/GameOverPanel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 190.0
+margin/bottom = 40.0
+text = "Game Over"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="RestartButton" type="Button" parent="UI/GameOverPanel"]
+
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 70.0
+margin/top = 70.0
+margin/right = 170.0
+margin/bottom = 90.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Restart"
+flat = false
+
 [connection signal="timeout" from="Container/Spawners/SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 
 [connection signal="timeout" from="Container/Spawners/WavePauseTimer" to="." method="_on_WavePauseTimer_timeout"]
+
+[connection signal="pressed" from="UI/GameOverPanel/RestartButton" to="." method="_on_RestartButton_pressed"]
 
 

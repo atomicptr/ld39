@@ -1,5 +1,7 @@
 extends Area2D
 
+onready var Game = get_tree().get_root().get_node("Game")
+
 const BULLET_SPEED = 150.0
 
 var direction = Vector2(0, -1)
@@ -35,6 +37,9 @@ func _on_bullet_body_enter(body):
         if owner == null or (owner != null and owner.get_instance_ID() != body.get_instance_ID()):
             if body.has_method("on_hit"):
                 body.on_hit(owner)
+            var explosion = Game.explode(get_global_pos())
+            explosion.particles().set_amount(100)
+            explosion.particles().set_lifetime(0.25)
             queue_free()
 
 func _on_DestroyTimer_timeout():

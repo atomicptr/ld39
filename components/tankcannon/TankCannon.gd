@@ -26,4 +26,5 @@ func fire_bullet():
     bullet.set_global_pos(cannon_pos)
     bullet.set_direction(cannon_direction)
 
+    Game.sfx("bullet")
     BulletContainer.add_child(bullet)

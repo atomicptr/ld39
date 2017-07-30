@@ -13,8 +13,15 @@ onready var SpawnPointRight = get_node("Container/Spawners/Right")
 
 onready var EnemyTank = preload("res://entities/enemytank/EnemyTank.tscn")
 
+onready var Explosion = preload("res://entities/explosion/Explosion.tscn")
+onready var ExplosionContainer = get_node("Container/Explosions")
+
 onready var WaveLabel = get_node("UI/WaveLabel")
 onready var EnemiesLeftLabel = get_node("UI/EnemiesLeftLabel")
+onready var GameOverPanel = get_node("UI/GameOverPanel")
+onready var GameOverLabel = get_node("UI/GameOverPanel/GameOverLabel")
+
+onready var Sound = get_node("Container/Sound")
 
 onready var WavePauseTimer = get_node("Container/Spawners/WavePauseTimer")
 
@@ -66,8 +73,21 @@ func _process(delta):
             waiting_for_pause_to_end = true
             WavePauseTimer.start()
         else:
-            # TODO: if this happens, either game over or random shit
-            WaveLabel.set_text("!!! LAST WAVE?")
+            GameOverLabel.set_text("You Win!")
+            end_game()
+
+func end_game():
+    get_tree().call_group(0, "enemy", "destroy")
+    GameOverPanel.show()
+
+func explode(pos, sound=true):
+    var explosion = Explosion.instance()
+    ExplosionContainer.add_child(explosion)
+    explosion.set_global_pos(pos)
+    explosion.get_node("particles").set_emitting(true)
+    if sound:
+        sfx("explosion")
+    return explosion
 
 func _on_SpawnTimer_timeout():
     if not enemies_to_add.empty():
@@ -79,3 +99,9 @@ func _on_SpawnTimer_timeout():
 func _on_WavePauseTimer_timeout():
     new_wave = true
     waiting_for_pause_to_end = false
+
+func _on_RestartButton_pressed():
+    get_tree().change_scene("res://Game.tscn")
+
+func sfx(name):
+    Sound.play(name)
