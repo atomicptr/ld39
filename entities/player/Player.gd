@@ -60,7 +60,10 @@ func velocity():
 
 func fire_bullet():
     if time - last_bullet_shot >= (BULLET_DELAY * (1 - energy/200)) and reduce_energy(ENERGY_BULLET_COST):
-        velocity += TankCannon.direction() * ACCELERATION * 10
+        velocity += TankCannon.direction() * ACCELERATION * (25 * (energy/100.0))
+        print(ACCELERATION * (25 * (energy/100)), energy, energy/100.0)
+
+        TankCannon.set_bulletspeed_modifier(1.0 + energy/200.0)
         TankCannon.fire_bullet()
         last_bullet_shot = time
 
