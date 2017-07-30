@@ -1,15 +1,11 @@
 extends KinematicBody2D
 
-onready var TopSprite = get_node("TopSprite")
+onready var TankCannon = get_node("TankCannon")
 onready var BottomSprite = get_node("BottomSprite")
-onready var CannonPosition = TopSprite.get_node("Cannon")
 
 onready var EnergyMeter = get_node("EnergyMeter")
 
 onready var Game = get_tree().get_root().get_node("Game")
-onready var BulletContainer = Game.get_node("BulletContainer")
-
-onready var BulletScene = preload("res://entities/bullet/Bullet.tscn")
 
 const ACCELERATION = 6.0
 const TURN_RATE = 0.05
@@ -30,6 +26,8 @@ var last_bullet_shot = 0.0
 func _ready():
     set_process(true)
 
+    TankCannon.set_owner(self)
+
 func _process(delta):
     if Input.is_action_pressed("forward"):
         velocity += (direction * ACCELERATION * (1 + energy/200))
@@ -47,7 +45,7 @@ func _process(delta):
         fire_bullet()
 
     # top looks at mouse
-    TopSprite.look_at(get_global_mouse_pos())
+    TankCannon.look_at(get_global_mouse_pos())
 
     # bottom looks into direction
     BottomSprite.look_at(get_pos() + direction)
@@ -72,18 +70,7 @@ func turn(rad):
 
 func fire_bullet():
     if time - last_bullet_shot >= (BULLET_DELAY * (1 - energy/200)) and reduce_energy(ENERGY_BULLET_COST):
-        var bullet = BulletScene.instance()
-        bullet.set_owner(self)
-
-        var cannon_pos = CannonPosition.get_global_pos()
-
-        var cannon_direction = -(get_global_pos() - cannon_pos).normalized()
-
-        bullet.set_global_pos(cannon_pos)
-        bullet.set_direction(cannon_direction)
-
-        BulletContainer.add_child(bullet)
-
+        TankCannon.fire_bullet()
         last_bullet_shot = time
 
 func reduce_energy(amount):

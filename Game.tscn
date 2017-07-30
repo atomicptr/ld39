@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/enemytank/EnemyTank.tscn" type="PackedScene" id=3]
 

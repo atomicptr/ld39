@@ -2,7 +2,7 @@
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/tankbottom.png" type="Texture" id=2]
-[ext_resource path="res://entities/player/tanktop.png" type="Texture" id=3]
+[ext_resource path="res://components/tankcannon/TankCannon.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -26,15 +26,7 @@ script/script = ExtResource( 1 )
 
 texture = ExtResource( 2 )
 
-[node name="TopSprite" type="Sprite" parent="."]
-
-texture = ExtResource( 3 )
-flip_v = true
-
-[node name="Cannon" type="Node2D" parent="TopSprite"]
-
-visibility/behind_parent = true
-transform/pos = Vector2( 0, 8 )
+[node name="TankCannon" parent="." instance=ExtResource( 3 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
