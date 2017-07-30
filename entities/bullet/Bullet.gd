@@ -32,7 +32,6 @@ func set_direction(dir):
     look_at(get_global_pos() - (direction * 2))
 
 func _on_bullet_body_enter(body):
-    print(body, body.is_in_group("hitable"))
     if body.is_in_group("hitable"):
         if owner == null or (owner != null and owner.get_instance_ID() != body.get_instance_ID()):
             if body.has_method("on_hit"):
