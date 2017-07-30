@@ -25,44 +25,15 @@ onready var Sound = get_node("Container/Sound")
 
 onready var WavePauseTimer = get_node("Container/Spawners/WavePauseTimer")
 
-onready var waves = [
-    {
-        "enemies": [
-            {"type": EnemyTank, "location": SpawnPointTop, "number": 1},
-            {"type": EnemyTank, "location": SpawnPointLeft, "number": 1},
-            {"type": EnemyTank, "location": SpawnPointRight, "number": 1}
-        ],
-        "reward": 5
-    },
-    {
-        "enemies": [
-            {"type": EnemyTank, "location": SpawnPointTop, "number": 1},
-            {"type": EnemyTank, "location": SpawnPointLeft, "number": 1},
-            {"type": EnemyTank, "location": SpawnPointRight, "number": 1},
-            {"type": EnemyTank, "location": SpawnPointBottom, "number": 2},
-            {"type": EnemyTank, "location": SpawnPointRight, "number": 1},
-            {"type": EnemyTank, "location": SpawnPointLeft, "number": 1},
-            {"type": EnemyTank, "location": SpawnPointTop, "number": 1}
-        ],
-        "reward": 8
-    },
-    {
-        "enemies": [
-            {"type": EnemyTank, "location": SpawnPointTop, "number": 2},
-            {"type": EnemyTank, "location": SpawnPointLeft, "number": 2},
-            {"type": EnemyTank, "location": SpawnPointRight, "number": 2},
-            {"type": EnemyTank, "location": SpawnPointBottom, "number": 3},
-            {"type": EnemyTank, "location": SpawnPointRight, "number": 2},
-            {"type": EnemyTank, "location": SpawnPointLeft, "number": 2},
-            {"type": EnemyTank, "location": SpawnPointTop, "number": 2}
-        ],
-        "reward": 12
-    }
-]
+onready var waves = []
 
 onready var enemies_to_add = []
 
 func _ready():
+    # add more waves dynamically
+    for i in range(3, 23):
+        add_wave(i)
+
     set_process(true)
 
 func _process(delta):
@@ -80,13 +51,15 @@ func _process(delta):
                 enemies_to_add.append(enemy)
         new_wave = false
     elif enemies_left == 0 and not waiting_for_pause_to_end:
-        if wave_num + 1 < waves.size():
-            wave_num += 1
-            waiting_for_pause_to_end = true
-            WavePauseTimer.start()
-        else:
-            GameOverLabel.set_text("You Win!")
-            end_game()
+        if wave_num + 1 >= waves.size():
+            for i in range(wave_num, wave_num + 5):
+                add_wave(i)
+        wave_num += 1
+        waiting_for_pause_to_end = true
+        WavePauseTimer.start()
+
+    if Input.is_action_pressed("wipemap"):
+        get_tree().call_group(0, "enemy", "destroy")
 
 func end_game():
     get_tree().set_pause(true)
@@ -118,3 +91,14 @@ func _on_RestartButton_pressed():
 
 func sfx(name):
     Sound.play(name)
+
+func add_wave(i):
+    waves.append({
+        "enemies": [
+            {"type": EnemyTank, "location": SpawnPointTop, "number": 1 + randi() % i},
+            {"type": EnemyTank, "location": SpawnPointLeft, "number": 1 + randi() % i},
+            {"type": EnemyTank, "location": SpawnPointRight, "number": 1 + randi() % i},
+            {"type": EnemyTank, "location": SpawnPointBottom, "number": 1 + randi() % i},
+        ],
+        "reward": 10 + (randi() % i)
+    })
