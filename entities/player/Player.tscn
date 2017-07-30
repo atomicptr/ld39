@@ -1,14 +1,48 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://entities/player/tankbottom.png" type="Texture" id=2]
-[ext_resource path="res://entities/player/TankBottom.gd" type="Script" id=3]
-[ext_resource path="res://components/tankcannon/TankCannon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/tankbottom/TankBottom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/tankcannon/TankCannon.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8.16122, 7.95641 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0, 0.6, 1, 1 )
+light_color = Color( 0, 0.478431, 0.8, 1 )
+dark_color = Color( 0, 0.478431, 0.8, 1 )
+border_size = 1
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0, 0.478431, 0.8, 1 )
+light_color = Color( 0, 0.478431, 0.8, 1 )
+dark_color = Color( 0, 0.478431, 0.8, 1 )
+border_size = 0
+border_blend = false
+draw_bg = true
+
+[sub_resource type="BitmapFont" id=2]
+
+textures = [  ]
+chars = IntArray(  )
+kernings = IntArray(  )
+height = 1.0
+ascent = 0.0
+distance_field = false
 
 [node name="Player" type="KinematicBody2D" groups=[
 "hittable",
@@ -23,12 +57,9 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 
-[node name="TankBottom" type="Sprite" parent="."]
+[node name="TankBottom" parent="." instance=ExtResource( 2 )]
 
-texture = ExtResource( 2 )
-script/script = ExtResource( 3 )
-
-[node name="TankCannon" parent="." instance=ExtResource( 4 )]
+[node name="TankCannon" parent="." instance=ExtResource( 3 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -36,36 +67,20 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 0.5, 0.5 )
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-drag_margin/h_enabled = false
-drag_margin/v_enabled = false
-smoothing/enable = false
-smoothing/speed = 0.0
-drag_margin/left = 0.0
-drag_margin/top = 0.0
-drag_margin/right = 0.0
-drag_margin/bottom = 0.0
-
 [node name="EnergyMeter" type="ProgressBar" parent="."]
 
 rect/scale = Vector2( 0.5, 0.5 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
+focus/ignore_mouse = true
+focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 199.0
-margin/top = -148.0
-margin/right = 309.0
-margin/bottom = -132.0
+margin/left = -16.0
+margin/top = 12.0
+margin/right = 48.0
+margin/bottom = 20.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0

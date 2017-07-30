@@ -2,16 +2,23 @@ extends Sprite
 
 var direction = Vector2(0, 1)
 
+var owner = null
+
 func _ready():
-    # Called every time the node is added to the scene.
-    # Initialization here
-    pass
+    set_process(true)
+
+func set_owner(owner):
+    self.owner = owner
+
+func _process(delta):
+    if owner != null:
+        look_at(owner.get_pos() + direction)
+
+func set_direction(dir):
+    direction = dir
 
 func direction():
     return direction
-
-func update_direction(pos):
-    look_at(pos + direction)
 
 func turn(rad):
     var sinus = sin(rad)

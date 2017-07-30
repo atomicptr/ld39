@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://components/tankbottom/tankbottom.png" type="Texture" id=1]
+[ext_resource path="res://components/tankbottom/TankBottom.gd" type="Script" id=2]
+
+[node name="TankBottom" type="Sprite"]
+
+texture = ExtResource( 1 )
+script/script = ExtResource( 2 )
+
+

@@ -3,7 +3,7 @@ extends Sprite
 onready var CannonPosition = get_node("Cannon")
 
 onready var Game = get_tree().get_root().get_node("Game")
-onready var BulletContainer = Game.get_node("BulletContainer")
+onready var BulletContainer = Game.get_node("Container/Bullets")
 
 onready var BulletScene = preload("res://entities/bullet/Bullet.tscn")
 

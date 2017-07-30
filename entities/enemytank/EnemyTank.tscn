@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://entities/enemytank/EnemyTank.gd" type="Script" id=1]
-[ext_resource path="res://entities/player/tankbottom.png" type="Texture" id=2]
+[ext_resource path="res://components/tankbottom/TankBottom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://components/tankcannon/TankCannon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/enemytank/enemytanktop.png" type="Texture" id=4]
 
@@ -11,6 +11,7 @@ custom_solver_bias = 0.0
 extents = Vector2( 7.03401, 8.0404 )
 
 [node name="EnemyTank" type="KinematicBody2D" groups=[
+"enemy",
 "hittable",
 ]]
 
@@ -23,9 +24,7 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 
-[node name="BottomSprite" type="Sprite" parent="."]
-
-texture = ExtResource( 2 )
+[node name="TankBottom" parent="." instance=ExtResource( 2 )]
 
 [node name="TankCannon" parent="." instance=ExtResource( 3 )]
 

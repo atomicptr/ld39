@@ -25,6 +25,7 @@ var last_bullet_shot = 0.0
 func _ready():
     set_process(true)
 
+    TankBottom.set_owner(self)
     TankCannon.set_owner(self)
 
 func _process(delta):
@@ -46,9 +47,6 @@ func _process(delta):
     # top looks at mouse
     TankCannon.look_at(get_global_mouse_pos())
 
-    # bottom looks into direction
-    TankBottom.update_direction(get_pos())
-
     move(velocity * delta)
     velocity *= 0.9
 
@@ -56,6 +54,9 @@ func _process(delta):
 
     # update energy meter ui
     EnergyMeter.set_val(energy)
+
+func velocity():
+    return velocity
 
 func fire_bullet():
     if time - last_bullet_shot >= (BULLET_DELAY * (1 - energy/200)) and reduce_energy(ENERGY_BULLET_COST):
