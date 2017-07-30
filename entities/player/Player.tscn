@@ -45,7 +45,7 @@ ascent = 0.0
 distance_field = false
 
 [node name="Player" type="KinematicBody2D" groups=[
-"hittable",
+"hitable",
 ]]
 
 input/pickable = false

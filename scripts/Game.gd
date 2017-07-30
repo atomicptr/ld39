@@ -41,7 +41,7 @@ func _process(delta):
         new_wave = false
 
 func _on_SpawnTimer_timeout():
-    if enemies_to_add.size() > 0:
+    if not enemies_to_add.empty():
         var enemy = enemies_to_add.front()
         enemies_to_add.pop_front()
 

@@ -11,8 +11,8 @@ custom_solver_bias = 0.0
 extents = Vector2( 7.03401, 8.0404 )
 
 [node name="EnemyTank" type="KinematicBody2D" groups=[
+"hitable",
 "enemy",
-"hittable",
 ]]
 
 input/pickable = false
