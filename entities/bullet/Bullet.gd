@@ -21,7 +21,6 @@ func set_owner(owner):
 func is_owner(obj):
     if owner == null:
         return false
-
     return owner.get_instance_ID() == obj.get_instance_ID()
 
 func move(vec):

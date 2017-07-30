@@ -37,18 +37,12 @@ func _process(delta):
     move(velocity * delta)
     velocity *= 0.9
 
-    update()
-
 func on_hit(by):
     BulletContainer.purge_owner(self)
 
     if by != null and not by.is_in_group("enemy"):
+        Player.reward(10, 1)
         queue_free()
 
 func _on_ReloadTimer_timeout():
     TankCannon.fire_bullet()
-
-func _draw():
-    if points.size() > 1:
-        for p in points:
-            draw_circle(p - get_global_pos(), 2, Color(1, 0, 0)) #

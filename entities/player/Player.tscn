@@ -99,7 +99,7 @@ texture = ExtResource( 4 )
 [node name="EnergyTimer" type="Timer" parent="."]
 
 process_mode = 0
-wait_time = 1.0
+wait_time = 5.0
 one_shot = false
 autostart = true
 

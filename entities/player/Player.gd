@@ -23,10 +23,10 @@ var time = 0.0
 var last_bullet_shot = 0.0
 
 func _ready():
-    set_process(true)
-
     TankBottom.set_owner(self)
     TankCannon.set_owner(self)
+
+    set_process(true)
 
 func _process(delta):
     if Input.is_action_pressed("forward"):
@@ -73,9 +73,12 @@ func reduce_energy(amount):
 func increase_energy(amount):
     energy = min(energy + amount, ENERGY_MAX)
 
+func reward(energy, money):
+    increase_energy(energy)
+
 func on_hit(by):
     if not reduce_energy(10):
         print("technically you should be dead now :P")
 
 func _on_EnergyTimer_timeout():
-    increase_energy(1)
+    increase_energy(10)
