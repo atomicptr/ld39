@@ -5,12 +5,12 @@
 [ext_resource path="res://components/tankcannon/TankCannon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/player/energy.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8.16122, 7.95641 )
+radius = 6.07066
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -23,7 +23,7 @@ border_size = 1
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -36,7 +36,7 @@ border_size = 0
 border_blend = false
 draw_bg = true
 
-[sub_resource type="BitmapFont" id=2]
+[sub_resource type="BitmapFont" id=4]
 
 textures = [  ]
 chars = IntArray(  )
@@ -79,9 +79,9 @@ margin/left = -16.0
 margin/top = 12.0
 margin/right = 48.0
 margin/bottom = 20.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0

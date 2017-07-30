@@ -5,10 +5,10 @@
 [ext_resource path="res://components/tankcannon/TankCannon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/enemytank/enemytanktop.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 7.03401, 8.0404 )
+radius = 5.93536
 
 [node name="EnemyTank" type="KinematicBody2D" groups=[
 "hitable",
