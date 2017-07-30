@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var TankCannon = get_node("TankCannon")
-onready var BottomSprite = get_node("BottomSprite")
+onready var TankBottom = get_node("TankBottom")
 
 onready var EnergyMeter = get_node("EnergyMeter")
 
@@ -16,7 +16,6 @@ const ENERGY_MAX = 100
 const ENERGY_BULLET_COST = 5
 
 var velocity = Vector2(0, 0)
-var direction = Vector2(0, 1)
 
 var energy = 100
 
@@ -30,16 +29,16 @@ func _ready():
 
 func _process(delta):
     if Input.is_action_pressed("forward"):
-        velocity += (direction * ACCELERATION * (1 + energy/200))
+        velocity += (TankBottom.direction() * ACCELERATION * (1 + energy/200))
 
     if Input.is_action_pressed("backward"):
-        velocity -= (direction * ACCELERATION * (1 + energy/200)) * 0.5
+        velocity -= (TankBottom.direction() * ACCELERATION * (1 + energy/200)) * 0.5
 
     if Input.is_action_pressed("turn_left"):
-        turn(-TURN_RATE)
+        TankBottom.turn(-TURN_RATE)
 
     if Input.is_action_pressed("turn_right"):
-        turn(TURN_RATE)
+        TankBottom.turn(TURN_RATE)
 
     if Input.is_action_pressed("fire"):
         fire_bullet()
@@ -48,7 +47,7 @@ func _process(delta):
     TankCannon.look_at(get_global_mouse_pos())
 
     # bottom looks into direction
-    BottomSprite.look_at(get_pos() + direction)
+    TankBottom.update_direction(get_pos())
 
     move(velocity * delta)
     velocity *= 0.9
@@ -57,16 +56,6 @@ func _process(delta):
 
     # update energy meter ui
     EnergyMeter.set_val(energy)
-
-func turn(rad):
-    var sinus = sin(rad)
-    var cosinus = cos(rad)
-
-    var tx = direction.x
-    var ty = direction.y
-
-    direction.x = (cosinus * tx) - (sinus * ty)
-    direction.y = (sinus * tx) + (cosinus * ty)
 
 func fire_bullet():
     if time - last_bullet_shot >= (BULLET_DELAY * (1 - energy/200)) and reduce_energy(ENERGY_BULLET_COST):
