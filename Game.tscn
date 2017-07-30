@@ -324,6 +324,7 @@ max_lines_visible = -1
 
 [node name="GameOverPanel" type="Panel" parent="UI"]
 
+process/pause_mode = 2
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true

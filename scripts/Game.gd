@@ -89,7 +89,7 @@ func _process(delta):
             end_game()
 
 func end_game():
-    get_tree().call_group(0, "enemy", "destroy")
+    get_tree().set_pause(true)
     GameOverPanel.show()
 
 func explode(pos, sound=true):
@@ -113,6 +113,7 @@ func _on_WavePauseTimer_timeout():
     waiting_for_pause_to_end = false
 
 func _on_RestartButton_pressed():
+    get_tree().set_pause(false)
     get_tree().change_scene("res://Game.tscn")
 
 func sfx(name):

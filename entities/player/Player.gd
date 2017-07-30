@@ -79,6 +79,7 @@ func reward(energy, money):
 func on_hit(by):
     if not reduce_energy(10):
         Game.end_game()
+        hide()
 
 func _on_EnergyTimer_timeout():
     increase_energy(10)
